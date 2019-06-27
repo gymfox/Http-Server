@@ -37,12 +37,10 @@ public final class HTTPRequest {
 
     static void validateRequestHttpVersion(String requestHttpVersion) throws InvalidHTTPVersionException, InvalidPartsHTTPVersionException {
         String[] httpVersionParts = requestHttpVersion.split("/");
+
         validateParts(httpVersionParts);
-
-        double httpVersion = Double.parseDouble(httpVersionParts[SECOND_PART]);
-
         validateProtocolName(httpVersionParts[FIRST_PART]);
-        validateProtocolVersion(httpVersion);
+        validateProtocolVersion(Double.parseDouble(httpVersionParts[SECOND_PART]));
     }
 
     private static void validateParts(String[] httpVersionParts) throws InvalidPartsHTTPVersionException {
